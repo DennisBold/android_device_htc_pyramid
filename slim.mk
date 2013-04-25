@@ -1,3 +1,6 @@
+# Orginially taken from CyanogenMod (cm.mk)
+# (C) CyanogenMod
+
 # Specify phone tech before including full_phone
 $(call inherit-product, vendor/slim/config/gsm.mk)
 
@@ -14,7 +17,6 @@ $(call inherit-product, vendor/slim/config/common_ledflash.mk)
 # Inherit device configuration
 $(call inherit-product, device/htc/pyramid/device_pyramid.mk)
 
-# Copy boot animation
 PRODUCT_COPY_FILES += \
     vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
 
