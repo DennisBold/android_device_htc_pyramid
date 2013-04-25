@@ -14,6 +14,10 @@ $(call inherit-product, vendor/slim/config/common_ledflash.mk)
 # Inherit device configuration
 $(call inherit-product, device/htc/pyramid/device_pyramid.mk)
 
+# Copy boot animation
+PRODUCT_COPY_FILES += \
+    vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
+
 # Device naming
 PRODUCT_DEVICE := pyramid
 PRODUCT_NAME := slim_pyramid
