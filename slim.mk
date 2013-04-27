@@ -1,6 +1,8 @@
 # Orginially taken from CyanogenMod (cm.mk)
 # (C) CyanogenMod
 
+# Build User
+BUSER := Dennis-Bold
 # Specify phone tech before including full_phone
 $(call inherit-product, vendor/slim/config/gsm.mk)
 
@@ -14,11 +16,14 @@ TARGET_SCREEN_WIDTH := 540
 # Inherit some common Slim stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 $(call inherit-product, vendor/slim/config/common_ledflash.mk)
+$(call inherit-product, vendor/slim/config/common_pyramid.mk)
 # Inherit device configuration
 $(call inherit-product, device/htc/pyramid/device_pyramid.mk)
 
 PRODUCT_COPY_FILES += \
     vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
+
+BUILD_TYPE := SLIM_NIGHTLY
 
 # Device naming
 PRODUCT_DEVICE := pyramid

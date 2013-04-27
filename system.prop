@@ -46,5 +46,8 @@ ro.kernel.checkjni=0
 # ro.min.fling_velocity=8000
 # view.scroll_friction=0
 
+# Slim Version
+ro.slim.version=SLIM_NIGHTLY
+
 # END_PYRAMID_SYSTEM_PROPERTIES
 
