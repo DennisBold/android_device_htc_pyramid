@@ -1,5 +1,8 @@
 # Pyramid system.prop
 
+# LCD Density
+ro.sf.lcd_density=240
+
 # NETWORK/DATA/RADIO
 
 mobiledata.interfaces=rmnet0
