@@ -67,6 +67,10 @@ net.rmnet0.dns1=8.8.8.8
 net.rmnet0.dns2=8.8.4.4
 net.dns1=8.8.8.8
 net.dns2=8.8.4.4
+ro.media.panorama.defres=9065x2231
+ro.media.panorama.frameres=3264x2448
+wifi.supplicant_scan_interval=180
+
 persist.sys.purgeable_assets=1
 
 # Scrolling-Tweaks
