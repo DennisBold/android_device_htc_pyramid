@@ -42,12 +42,39 @@ ro.vold.umsdirtyratio=50
 ro.kernel.android.checkjni=0
 ro.kernel.checkjni=0
 
+# Tweaks -DB
+ro.product.locale.language=en
+ro.product.locale.region=GB
+ro.config.vc_call_vol_steps=20
+ro.com.google.apphider=on
+# Silly name for BT
+net.bt.name=TARDIS-Type40
+debug.sf.hw=1
+video.accelerate.hw=1
+ro.media.enc.jpeg.quality=100
+ro.media.dec.jpeg.memcap=8000000
+ro.media.enc.hprof.vid.bps=8000000
+debug.composition.type=hw
+ro.HOME_APP_ADJ=1
+ro.telephony.call_ring.delay=0
+ring.delay=0
+ro.config.hw_quickpoweron=true
+ro.config.nocheckin=1
+persist.sys.shutdown.mode=hibernate
+debug.kill_allocating_task=0
+ro.debuggable=1
+net.rmnet0.dns1=8.8.8.8
+net.rmnet0.dns2=8.8.4.4
+net.dns1=8.8.8.8
+net.dns2=8.8.4.4
+persist.sys.purgeable_assets=1
+
 # Scrolling-Tweaks
 
-# windowsmgr.max_events_per_sec=150
-# ro.max.fling_velocity=12000
-# ro.min.fling_velocity=8000
-# view.scroll_friction=0
+windowsmgr.max_events_per_sec=150
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+view.scroll_friction=0
 
 # END_PYRAMID_SYSTEM_PROPERTIES
 

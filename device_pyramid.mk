@@ -27,6 +27,10 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/pyramid/overlay
 PRODUCT_PACKAGES += \
     gps.pyramid
 
+# WLAN
+PRODUCT_PACKAGES += \
+    libnetcmdiface
+
 # Torch
 PRODUCT_PACKAGES += \
     Torch

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <add-resource type="string" name="pref_camera_picturesize_entry_3264x2176"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_3264x1840"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_2592x1952"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_2592x1728"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_2592x1456"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_2304x1536"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_2048x1360"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_2048x1152"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_1584x1056"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_1600x896"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_1280x848"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_960x720"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_640x416"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_640x384"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_640x368"/>
+    <add-resource type="string" name="pref_camera_picturesize_entry_272x272"/>
+    
+    <string name="pref_camera_picturesize_entry_3264x2448">8MP</string>
+    <string name="pref_camera_picturesize_entry_3264x2176">7.1MP</string>
+    <string name="pref_camera_picturesize_entry_3264x1952">6.4MP</string>
+    <string name="pref_camera_picturesize_entry_3264x1840">6MP 16:9</string>
+    <string name="pref_camera_picturesize_entry_2592x1952">5.1MP</string>
+    <string name="pref_camera_picturesize_entry_2592x1728">4.5MP</string>
+    <string name="pref_camera_picturesize_entry_2592x1552">4MP</string>
+    <string name="pref_camera_picturesize_entry_2592x1456">3.8MP</string>
+    <string name="pref_camera_picturesize_entry_2304x1728">4MP</string>
+    <string name="pref_camera_picturesize_entry_2304x1536">3.5MP</string>
+    <string name="pref_camera_picturesize_entry_2048x1536">3.1MP</string>
+    <string name="pref_camera_picturesize_entry_2048x1360">2.8MP</string>
+    <string name="pref_camera_picturesize_entry_2048x1216">2.5MP</string>
+    <string name="pref_camera_picturesize_entry_2048x1152">2.4MP</string>
+    <string name="pref_camera_picturesize_entry_1600x1200">1.9MP</string>
+    <string name="pref_camera_picturesize_entry_1584x1056">1.7MP</string>
+    <string name="pref_camera_picturesize_entry_1600x896">1.4MP</string>
+    <string name="pref_camera_picturesize_entry_1280x1024">1.3MP</string>
+    <string name="pref_camera_picturesize_entry_1280x960">1.2MP</string>
+    <string name="pref_camera_picturesize_entry_1280x848">1.1MP</string>
+    <string name="pref_camera_picturesize_entry_1280x768">1MP</string>
+    <string name="pref_camera_picturesize_entry_1280x720">0.9MP</string>
+    <string name="pref_camera_picturesize_entry_960x720">0.7MP</string>
+    <string name="pref_camera_picturesize_entry_640x480">VGA</string>
+    <string name="pref_camera_picturesize_entry_640x416">VGA 3:2</string>
+    <string name="pref_camera_picturesize_entry_640x384">VGA 5:3</string>
+    <string name="pref_camera_picturesize_entry_640x368">VGA 16:9</string>
+    <string name="pref_camera_picturesize_entry_320x240">QVGA</string>
+    <string name="pref_camera_picturesize_entry_272x272">Contact</string>
+
+</resources>
