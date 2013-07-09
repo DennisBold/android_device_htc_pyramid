@@ -10,6 +10,9 @@ on early-init
     symlink /storage/sdcard0 /mnt/sdcard
     export EXTERNAL_STORAGE /storage/sdcard0
 
+on emmc-fs
+    mkdir /devlog 0700 root root
+
     # load msm8660 firmware so things have time to initialize
     rm /vendor
     mkdir /vendor 0771 system system
@@ -17,22 +20,25 @@ on early-init
     mkdir /vendor/firmware/misc 0771 system system
     mkdir /vendor/firmware/adsp 0771 system system
 
-    wait /dev/block/mmcblk0p17
-    wait /dev/block/mmcblk0p19
-    mount vfat /dev/block/mmcblk0p17 /vendor/firmware/misc ro shortname=lower
-    mount vfat /dev/block/mmcblk0p19 /vendor/firmware/adsp ro shortname=lower
+    #wait /dev/block/mmcblk0p17
+    #wait /dev/block/mmcblk0p19
+    #mount vfat /dev/block/mmcblk0p17 /vendor/firmware/misc ro shortname=lower
+    #mount vfat /dev/block/mmcblk0p19 /vendor/firmware/adsp ro shortname=lower
 
-    symlink /vendor/firmware/adsp/q6.b09 /vendor/firmware/q6.b09
-    symlink /vendor/firmware/adsp/q6.b08 /vendor/firmware/q6.b08
-    symlink /vendor/firmware/adsp/q6.b07 /vendor/firmware/q6.b07
-    symlink /vendor/firmware/adsp/q6.b06 /vendor/firmware/q6.b06
-    symlink /vendor/firmware/adsp/q6.b05 /vendor/firmware/q6.b05
-    symlink /vendor/firmware/adsp/q6.b04 /vendor/firmware/q6.b04
-    symlink /vendor/firmware/adsp/q6.b03 /vendor/firmware/q6.b03
-    symlink /vendor/firmware/adsp/q6.b02 /vendor/firmware/q6.b02
-    symlink /vendor/firmware/adsp/q6.b01 /vendor/firmware/q6.b01
-    symlink /vendor/firmware/adsp/q6.b00 /vendor/firmware/q6.b00
-    symlink /vendor/firmware/adsp/q6.mdt /vendor/firmware/q6.mdt
+    # mount the whole thing
+    mount_all fstab.pyramid
+
+    symlink /adsp/q6.b09 /vendor/firmware/q6.b09
+    symlink /adsp/q6.b08 /vendor/firmware/q6.b08
+    symlink /adsp/q6.b07 /vendor/firmware/q6.b07
+    symlink /adsp/q6.b06 /vendor/firmware/q6.b06
+    symlink /adsp/q6.b05 /vendor/firmware/q6.b05
+    symlink /adsp/q6.b04 /vendor/firmware/q6.b04
+    symlink /adsp/q6.b03 /vendor/firmware/q6.b03
+    symlink /adsp/q6.b02 /vendor/firmware/q6.b02
+    symlink /adsp/q6.b01 /vendor/firmware/q6.b01
+    symlink /adsp/q6.b00 /vendor/firmware/q6.b00
+    symlink /adsp/q6.mdt /vendor/firmware/q6.mdt
     symlink /vendor/firmware/misc/modem.b09 /vendor/firmware/modem.b09
     symlink /vendor/firmware/misc/modem.b08 /vendor/firmware/modem.b08
     symlink /vendor/firmware/misc/modem.b07 /vendor/firmware/modem.b07
@@ -49,12 +55,8 @@ on early-init
     write /dev/smd_pkt_loopback 1
 
 
-on init
-    mkdir /devlog 0700 root root
-
-on fs
     # mount all mmc partitions
-    mount_all /fstab.pyramid
+  #  mount_all /fstab.pyramid
 
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
 
@@ -170,6 +172,23 @@ on boot
     chown system system /sys/devices/platform/panel_3d/3D_mode
     chmod 0664 /sys/devices/platform/panel_3d/3D_mode
 
+# Define TCP buffer sizes for various networks
+#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+    setprop net.tcp.buffersize.default 4096,87380,110208,4096,16384,110208
+    setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
+    setprop net.tcp.buffersize.hsdpa   4094,87380,704512,4096,16384,110208
+    setprop net.tcp.buffersize.umts    4094,87380,704512,4096,16384,110208
+    setprop net.tcp.buffersize.edge    4093,26280,704512,4096,16384,35040
+    setprop net.tcp.buffersize.gprs    4092,8760,704512,4096,8760,11680
+    setprop net.tcp.buffersize.lte     4096,221184,3461120,4096,221184,3461120
+    setprop net.tcp.buffersize.evdo_b  4094,87380,262144,4096,16384,262144
+    setprop net.tcp.buffersize.wimax   4096,221184,524288,4096,16384,110208
+
+    # Load bcmdhd.ko while booting
+    chmod 0444 /system/lib/modules/bcmdhd.ko
+    insmod /system/lib/modules/bcmdhd.ko
+    write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
+
     # sync fs
     chown system /sys/devices/platform/rs300000a7.65536/force_sync
     chown system /sys/devices/platform/rs300000a7.65536/sync_sts
@@ -209,6 +228,18 @@ service p2p_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c /data/mis
     disabled
     oneshot
 
+service netsharing_on /system/bin/netsharing net on
+	disabled
+	oneshot
+
+service netsharing_off /system/bin/netsharing net off
+	disabled
+	oneshot
+
+service netsharing_pass /system/bin/netsharing net_pass on
+	disabled
+	oneshot
+
 service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class main
     user root
@@ -224,14 +255,39 @@ service qmuxd /system/bin/qmuxd
     user radio
     group radio audio bluetooth gps
 
+service netmgrd /system/bin/netmgrd
+    class core
+
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p26 /dev/block/mmcblk0p27 /dev/block/mmcblk0p18
     class core
     user root
 
-# service thermald /system/bin/thermald
-#    user root
-#    group root
-@    disabled
+service dcvs0 /system/bin/dcvs --cpu=0 --slacktime=16
+    user root
+    disabled
+
+service dcvs1 /system/bin/dcvs --cpu=1 --slacktime=16
+    user root
+    disabled
+
+service zchgd_offmode /system/bin/zchgd -pseudooffmode
+    class main
+    user root
+    disabled
+
+service zchgd_onmode /system/bin/zchgd -onmode
+    class main
+    user root
+    oneshot
+
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+    class core
+    user root
+
+ service thermald /system/bin/thermald
+    user root
+    group root
+    disabled
 
 service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0 -c /data/misc/wifi/wpa_supplicant.conf
     user root
