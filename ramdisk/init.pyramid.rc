@@ -22,6 +22,17 @@ on early-init
     mount vfat /dev/block/mmcblk0p17 /vendor/firmware/misc ro shortname=lower
     mount vfat /dev/block/mmcblk0p19 /vendor/firmware/adsp ro shortname=lower
 
+    symlink /vendor/firmware/adsp/q6.b09 /vendor/firmware/q6.b09
+    symlink /vendor/firmware/adsp/q6.b08 /vendor/firmware/q6.b08
+    symlink /vendor/firmware/adsp/q6.b07 /vendor/firmware/q6.b07
+    symlink /vendor/firmware/adsp/q6.b06 /vendor/firmware/q6.b06
+    symlink /vendor/firmware/adsp/q6.b05 /vendor/firmware/q6.b05
+    symlink /vendor/firmware/adsp/q6.b04 /vendor/firmware/q6.b04
+    symlink /vendor/firmware/adsp/q6.b03 /vendor/firmware/q6.b03
+    symlink /vendor/firmware/adsp/q6.b02 /vendor/firmware/q6.b02
+    symlink /vendor/firmware/adsp/q6.b01 /vendor/firmware/q6.b01
+    symlink /vendor/firmware/adsp/q6.b00 /vendor/firmware/q6.b00
+    symlink /vendor/firmware/adsp/q6.mdt /vendor/firmware/q6.mdt
     symlink /vendor/firmware/misc/modem.b09 /vendor/firmware/modem.b09
     symlink /vendor/firmware/misc/modem.b08 /vendor/firmware/modem.b08
     symlink /vendor/firmware/misc/modem.b07 /vendor/firmware/modem.b07
@@ -34,7 +45,8 @@ on early-init
     symlink /vendor/firmware/misc/modem.b00 /vendor/firmware/modem.b00
     symlink /vendor/firmware/misc/modem.mdt /vendor/firmware/modem.mdt
 
-
+    # Force loading of modem and Q6 images
+    write /dev/smd_pkt_loopback 1
 
 
 on init
@@ -50,19 +62,6 @@ on fs
     symlink /system/vendor/firmware/fw_bcmdhd_apsta.bin /vendor/firmware/fw_bcmdhd_apsta.bin
     symlink /system/vendor/firmware/fw_bcmdhd_p2p.bin /vendor/firmware/fw_bcmdhd_p2p.bin
     symlink /system/vendor/firmware/bcm4329.hcd /vendor/firmware/bcm4329.hcd
-
-    symlink /adsp/q6.b07 /vendor/firmware/q6.b07
-    symlink /adsp/q6.b06 /vendor/firmware/q6.b06
-    symlink /adsp/q6.b05 /vendor/firmware/q6.b05
-    symlink /adsp/q6.b04 /vendor/firmware/q6.b04
-    symlink /adsp/q6.b03 /vendor/firmware/q6.b03
-    symlink /adsp/q6.b02 /vendor/firmware/q6.b02
-    symlink /adsp/q6.b01 /vendor/firmware/q6.b01
-    symlink /adsp/q6.b00 /vendor/firmware/q6.b00
-    symlink /adsp/q6.mdt /vendor/firmware/q6.mdt
-
-    # Force loading of modem and Q6 images
-    write /dev/smd_pkt_loopback 1
 
     # TEMP HACK 
     symlink /system/vendor/lib /vendor/lib
