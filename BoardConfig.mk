@@ -20,17 +20,30 @@
 # definition file).
 #
 
+# 3.4 shit
+BOARD_HAVE_OLD_ION_API := true
+COMMON_GLOBAL_CFLAGS += -DHTCLOG
+BOARD_WANTS_EMMC_BOOT := true
+TARGET_USES_ION := true
+
+USE_CAMERA_STUB := false
+TARGET_PROVIDES_CAMERA_HAL := true
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP_CAMERA_ABI_HACK
+COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
+COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
+COMMON_GLOBAL_CFLAGS += -DHTC_CAMERA_HARDWARE
+
 # inherit from common msm8660
 -include device/htc/msm8660-common/BoardConfigCommon.mk
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := pyramid
-BOARD_WANTS_EMMC_BOOT := true
 
 # Kernel [Settings]
 BOARD_KERNEL_BASE := 0x48000000
 BOARD_KERNEL_PAGE_SIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=qcom user_debug=31
+BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=pyramid no_console_suspend=1
 
 # Kernel [Build]
 TARGET_KERNEL_CONFIG := pyramid_defconfig
